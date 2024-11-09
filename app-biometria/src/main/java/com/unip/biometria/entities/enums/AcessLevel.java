@@ -1,7 +1,7 @@
 package com.unip.biometria.entities.enums;
 
 public enum AcessLevel {
-	ADMIN,
+	USER,
 	MANAGER,
-	USER
+	ADMIN
 }

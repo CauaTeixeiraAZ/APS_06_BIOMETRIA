@@ -2,6 +2,8 @@ package com.unip.biometria.program;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class mainFX extends Application {
@@ -9,19 +11,22 @@ public class mainFX extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(""));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainScene.fxml"));
+			BorderPane root = loader.load();
+			
+			Scene scene = new Scene(root, 700, 600);
+			
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		}
-		catch(RuntimeException e){
+		catch(Exception e){
 			System.err.println(e);
 		}
 	}
 
 	
 	public static void main(String[] args) {
-
 		launch(args);
-		
-		
 	}
 
 }
