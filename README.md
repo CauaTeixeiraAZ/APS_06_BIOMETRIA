@@ -1,1 +1,0 @@
-# APS_06_BIOMETRIA
