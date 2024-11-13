@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="910.0" stylesheets="@../stylesheet/mainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<top>
-		<HBox alignment="CENTER_RIGHT" prefHeight="100.0" BorderPane.alignment="CENTER">
+		<HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #1981AE;" BorderPane.alignment="CENTER">
 			<children>
-				<HBox alignment="CENTER_LEFT" prefHeight="60.0" HBox.hgrow="ALWAYS">
+				<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" HBox.hgrow="SOMETIMES">
 					<children>
 						<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,30 +28,37 @@
 						</Label>
 					</children>
 				</HBox>
-            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" style="-fx-background-color: #FCFCFC; -fx-border-color: #5F5F5F; -fx-border-radius: 20;" HBox.hgrow="ALWAYS">
                <children>
-      				<TextField prefWidth="400.0" promptText="Procurar..." HBox.hgrow="NEVER">
+      				<TextField promptText="Procurar..." style="-fx-background-color: #00000000;" HBox.hgrow="ALWAYS">
       					<HBox.margin>
-      						<Insets left="50.0" right="10.0" />
+      						<Insets />
       					</HBox.margin>
       				</TextField>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" x="-100.0" HBox.hgrow="NEVER">
+                  <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" scaleZ="0.0" HBox.hgrow="NEVER">
                      <image>
                         <Image url="@../images/LupaIcon.png" />
                      </image>
                      <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets left="5.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
+               <padding>
+                  <Insets left="5.0" right="10.0" />
+               </padding>
             </HBox>
 			</children>
 			<BorderPane.margin>
 				<Insets />
 			</BorderPane.margin>
-			<padding>
-				<Insets bottom="20.0" left="50.0" top="20.0" />
-			</padding>
+         <padding>
+            <Insets left="50.0" right="70.0" />
+         </padding>
 		</HBox>
 	</top>
 	<left>

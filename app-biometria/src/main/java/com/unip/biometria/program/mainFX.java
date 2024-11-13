@@ -3,7 +3,7 @@ package com.unip.biometria.program;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class mainFX extends Application {
@@ -11,10 +11,10 @@ public class mainFX extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RegisterScene.fxml"));
-			SplitPane root = loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LoginScene.fxml"));
+			HBox root = loader.load();
 			
-			Scene scene = new Scene(root, 700, 600);
+			Scene scene = new Scene(root);
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();
