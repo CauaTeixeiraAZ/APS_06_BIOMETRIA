@@ -47,7 +47,7 @@
                               <Image url="@../images/EmailIcon.png" />
                            </image>
                         </ImageView>
-                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Email" HBox.hgrow="ALWAYS">
+                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Email" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #000000;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -74,7 +74,7 @@
                               <Image url="@../images/KeyIcon.png" />
                            </image>
                         </ImageView>
-                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" promptText="Senha" HBox.hgrow="ALWAYS">
+                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" promptText="Senha" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #000000;" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -88,7 +88,7 @@
                   </Label>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #3AC22D; -fx-border-color: #0D702E; -fx-border-radius: 20;" text="Confirmar" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #3AC22D; -fx-border-color: #0D702E; -fx-border-radius: 20; -fx-background-radius: 20;" text="Confirmar" textAlignment="CENTER">
                            <padding>
                               <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                            </padding>
@@ -98,14 +98,11 @@
                         </Button>
                         <HBox alignment="CENTER_RIGHT" prefHeight="50.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #00000000; -fx-background-image: \\images\FingerPrintWhite.png;" textAlignment="CENTER">
-                                 <padding>
-                                    <Insets bottom="7.0" left="15.0" right="15.0" top="7.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Berlin Sans FB Bold" size="14.0" />
-                                 </font>
-                              </Button>
+                              <ImageView id="cadastrar" fx:id="cadastrar" fitHeight="26.0" fitWidth="73.0">
+                                 <image>
+                                    <Image url="@../images/RegisterTextIcon.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </HBox>
                      </children>

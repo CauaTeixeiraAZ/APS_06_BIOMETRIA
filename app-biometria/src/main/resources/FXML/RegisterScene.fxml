@@ -47,7 +47,7 @@
                               <Image url="@../images/UserIcon.png" />
                            </image>
                         </ImageView>
-                        <TextField maxHeight="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Digite seu nome" HBox.hgrow="ALWAYS">
+                        <TextField maxHeight="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Digite seu nome" styleClass="input-cadastro" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -71,7 +71,7 @@
                               <Image url="@../images/EmailIcon.png" />
                            </image>
                         </ImageView>
-                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Email" HBox.hgrow="ALWAYS">
+                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Email" styleClass="input-cadastro" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -91,7 +91,7 @@
                               <Image url="@../images/TelephoneIcon.png" />
                            </image>
                         </ImageView>
-                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="(00) 00000 - 0000" HBox.hgrow="ALWAYS">
+                        <TextField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="(00) 00000 - 0000" styleClass="input-cadastro" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -111,7 +111,7 @@
                               <Image url="@../images/KeyIcon.png" />
                            </image>
                         </ImageView>
-                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Digite a senha" HBox.hgrow="ALWAYS">
+                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Digite a senha" styleClass="input-cadastro" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -131,7 +131,7 @@
                               <Image url="@../images/KeyIcon.png" />
                            </image>
                         </ImageView>
-                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Confirme a senha..." HBox.hgrow="ALWAYS">
+                        <PasswordField maxHeight="-Infinity" prefHeight="40.0" prefWidth="190.0" promptText="Confirme a senha..." styleClass="input-cadastro" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -140,7 +140,7 @@
                   </HBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #3AC22D; -fx-border-color: #0D702E; -fx-border-radius: 20;" text="Confirmar" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #3AC22D; -fx-border-color: #0D702E; -fx-border-radius: 20; -fx-background-radius: 20;" text="Confirmar" textAlignment="CENTER">
                            <padding>
                               <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                            </padding>

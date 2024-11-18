@@ -31,7 +31,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" style="-fx-background-color: #FCFCFC; -fx-border-color: #5F5F5F; -fx-border-radius: 20;" HBox.hgrow="ALWAYS">
                <children>
-      				<TextField promptText="Procurar..." style="-fx-background-color: #00000000;" HBox.hgrow="ALWAYS">
+      				<TextField prefHeight="25.0" prefWidth="383.0" promptText="Procurar..." style="-fx-background-color: #00000000; -fx-background-radius: 20px; -fx-border-radius: 20px;" styleClass="browse_box" stylesheets="@../stylesheet/style.css" HBox.hgrow="ALWAYS">
       					<HBox.margin>
       						<Insets />
       					</HBox.margin>
