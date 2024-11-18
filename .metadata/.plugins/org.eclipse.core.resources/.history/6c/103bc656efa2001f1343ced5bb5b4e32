@@ -1,0 +1,3 @@
+.button_confirmar{
+	-fx-border-radius: 50%;
+}

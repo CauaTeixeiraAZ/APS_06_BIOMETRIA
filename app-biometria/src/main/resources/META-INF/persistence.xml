@@ -11,9 +11,9 @@
 		<properties>
 			<!-- JPA -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_biometria?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="YOUR_PASSWORD"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
             
             <!-- Hibernate properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

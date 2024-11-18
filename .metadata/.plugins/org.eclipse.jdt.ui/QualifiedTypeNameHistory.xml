@@ -4,4 +4,5 @@
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="javafx.scene.control.SplitPane"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.BorderPane"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
 </qualifiedTypeNameHistroy>

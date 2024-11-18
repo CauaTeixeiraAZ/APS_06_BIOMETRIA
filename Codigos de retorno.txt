@@ -1,0 +1,40 @@
+Códigos de Comandos Enviados pelo MQTT (para o ESP32)
+
+Comando 1 - Cadastro de Digital
+Descrição: Inicia o processo de cadastro de uma nova digital no sensor.
+
+Comando 2 - Verificar Digital
+Descrição: Verifica se o dedo colocado no sensor já foi cadastrado.
+
+Comando 3 - Excluir Digital
+Descrição: Exclui a digital cadastrada na posição informada.
+
+
+Códigos de Resposta (Retornos do ESP32 via MQTT)
+
+Código 2 - Comando Inválido
+Descrição: O comando recebido não é válido (não corresponde a um comando suportado).
+
+Código 3 - Mensagem Malformada
+Descrição: A mensagem recebida não possui o formato esperado ou está corrompida (exemplo: falta de dados ou dados inválidos).
+
+Código 5 - Sensor não detectado
+Descrição: Não foi possivel se conectar ao sensor
+
+Código 7 - Erro no Processamento da Imagem
+Descrição: O sensor encontrou um erro ao tentar processar a imagem da digital (por exemplo, imagem mal capturada).
+
+Código 8 - Erro ao Salvar a Digital
+Descrição: Ocorreu um erro ao tentar salvar a digital após o processamento.
+
+Código 9 - Erro ao Excluir a Digital
+Descrição: Ocorreu um erro ao tentar excluir a digital na posição especificada.
+
+Código 10 - Digital Não Encontrada
+Descrição: A digital não foi reconhecida durante a verificação.
+
+Código 100 - Cadastro de Digital Bem-sucedido
+Descrição: A digital foi cadastrada com sucesso no sensor na posição especificada.
+
+Código 101 - Exclusão de Digital Bem-sucedida
+Descrição: A digital foi excluída com sucesso da posição especificada.

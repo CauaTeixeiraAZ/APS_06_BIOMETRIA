@@ -1,0 +1,55 @@
+package com.unip.biometria.model.entities;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import favre.lib.crypto.bcrypt.BCrypt;
+
+@Entity
+@Table(name = "usuarios")
+public class Users{
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private int id;
+
+    private String nome;
+
+    @Column(unique = true)
+    private String email;
+
+    private String senha; // Armazenar como hash
+
+    private int nivelAcesso;
+
+    @Column(name = "data_cadastro")
+    private LocalDateTime dataCadastro;
+
+    public Users() {
+    }
+
+    public Users(String nome, String email, String senha, int nivelAcesso) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = hashSenha(senha);
+        this.nivelAcesso = nivelAcesso;
+        this.dataCadastro = LocalDateTime.now();
+    }
+
+    // Getters e Setters
+
+    private String hashSenha(String senha) {
+        return BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+
+    public boolean autenticar(String senha) {
+        return BCrypt.checkpw(senha, this.senha);
+    }
+}
