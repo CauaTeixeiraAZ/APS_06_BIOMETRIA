@@ -1,0 +1,41 @@
+package com.unip.biometria.controler.services;
+
+
+import org.eclipse.paho.client.mqttv3.MqttException;
+
+import com.unip.biometria.model.entities.Users;
+import com.unip.biometria.model.utils.MQTTConfig;
+
+public class AuthService {
+    private UsersDAO UsersDAO;
+    private MQTTConfig mqttConfig;
+
+    public AuthService() throws MqttException {
+        this.UsersDAO = new UsersDAO();
+        this.mqttConfig = new MQTTConfig();
+    }
+
+    public boolean autenticar(String email, String senha) throws Exception {
+        Users Users = UsersDAO.findByEmail(email);
+
+        if (Users != null && Users.getSenha().equals(senha)) {
+            // Envia solicitação para o ESP32
+            mqttConfig.publish("esp32/verify", String.valueOf(Users.getId()));
+
+            // Configura escuta para a resposta
+            final boolean[] resultado = {false};
+            mqttConfig.subscribe("esp32/result", (topic, message) -> {
+                String response = new String(message.getPayload());
+                if ("100".equals(response)) { // Código 100 = Sucesso
+                    resultado[0] = true;
+                }
+            });
+
+            // Aguardar resposta por até 5 segundos
+            Thread.sleep(5000);
+
+            return resultado[0];
+        }
+        return false;
+    }
+}

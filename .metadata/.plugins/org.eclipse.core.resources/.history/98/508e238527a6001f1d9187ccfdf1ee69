@@ -1,0 +1,80 @@
+package com.unip.biometria.controler.dao;
+
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.unip.biometria.model.entities.Users;
+
+public class UsersDAO {
+    private SessionFactory factory;
+
+    public UsersDAO() {
+        factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory();
+    }
+
+    public void salvarUsers(Users Users) {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            session.save(Users);
+            session.getTransaction().commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<Users> findAllUsers() {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            List<Users> Userss = session.createQuery("FROM Users", Users.class).list();
+            session.getTransaction().commit();
+            return Userss;
+        } finally {
+            session.close();
+        }
+    }
+
+    public void deletUsers(int id) {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            Users Users = session.get(Users.class, id);
+            if (Users != null) {
+                session.delete(Users);
+            }
+            session.getTransaction().commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    public Users findUsersPorId(int id) {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            Users Users = session.get(Users.class, id);
+            session.getTransaction().commit();
+            return Users;
+        } finally {
+            session.close();
+        }
+    }
+
+    public void updateUsers(Users Users) {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            session.update(Users);
+            session.getTransaction().commit();
+        } finally {
+            session.close();
+        }
+    }
+}

@@ -1,0 +1,22 @@
+package com.unip.biometria.controllers;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+
+public class LoginSceneController {
+	@FXML
+	private Button confirmBtn;
+
+	@FXML
+	private TextField emailField;
+
+	@FXML
+	private PasswordField passwordField;
+
+	@FXML
+	private ImageView registerBtn;
+
+}

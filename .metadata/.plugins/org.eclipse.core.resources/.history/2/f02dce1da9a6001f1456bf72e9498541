@@ -1,0 +1,25 @@
+package com.unip.biometria.model.utils;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class JpaUtils {
+	
+    private static SessionFactory SESSION_FACTORY = null;
+ 
+    public static SessionFactory getSessionFactory() {
+    	if(SESSION_FACTORY == null) {
+    		try {
+    			return SESSION_FACTORY = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    		} catch (Throwable ex) {
+    			throw new ExceptionInInitializerError(ex);
+    		}    		
+    	}
+		return SESSION_FACTORY;
+    }
+  
+
+    public static void shutdown() {
+        getSessionFactory().close();
+    }
+}

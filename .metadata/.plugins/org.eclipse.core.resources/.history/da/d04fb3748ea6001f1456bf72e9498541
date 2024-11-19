@@ -1,0 +1,5 @@
+package com.unip.biometria.model.dao;
+
+public class DaoUsers {
+
+}

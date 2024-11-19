@@ -1,0 +1,26 @@
+package com.unip.biometria.model.repositorys;
+
+import org.hibernate.Session;
+
+import java.util.List;
+
+public class EmpresaRepository {
+    private Session session;
+
+    public EmpresaRepository(Session session) {
+        this.session = session;
+    }
+
+    public List<Empresa> buscarPorNomeOuCNPJ(String termo) {
+        String hql = "FROM Empresa WHERE nome LIKE :termo OR cnpj LIKE :termo";
+        return session.createQuery(hql, Empresa.class)
+                .setParameter("termo", "%" + termo + "%")
+                .getResultList();
+    }
+
+    public void salvar(Empresa empresa) {
+        session.beginTransaction();
+        session.save(empresa);
+        session.getTransaction().commit();
+    }
+}

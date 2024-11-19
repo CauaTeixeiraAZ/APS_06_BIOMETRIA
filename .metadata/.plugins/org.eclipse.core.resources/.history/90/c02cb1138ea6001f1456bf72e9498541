@@ -1,0 +1,14 @@
+package com.unip.biometria.model.dao;
+
+import java.util.List;
+
+import com.unip.biometria.model.entities.Users;
+
+public interface IDaoCompany {
+	int register(Company company);
+	Users find(String email);
+	List<Users> findAll();
+	boolean update(Users user);
+	boolean delete(String email);
+	boolean delete(Users user);
+}

@@ -1,0 +1,28 @@
+.button_confirmar{
+	-fx-background-color: #3AC22D;
+	-fx-border-color: #0D702E;
+	-fx-border-radius: 10;
+}
+
+.card-person{
+	-fx-background-color: #0073C6;
+	-fx-background-radius:10;
+	-fx-border-radius:10;
+	}
+	
+.card-person2{
+	-fx-background-color: #44ADDA;
+	-fx-background-radius:10;
+	-fx-border-radius:10;
+	}
+
+.input-cadastro{
+	-fx-border-radius:20;
+	-fx-background-radius:20;
+	-fx-border-color: black;
+}
+
+.card-company{
+	-fx-background-radius:5;
+	-fx-background-color: #44ADDA;
+}

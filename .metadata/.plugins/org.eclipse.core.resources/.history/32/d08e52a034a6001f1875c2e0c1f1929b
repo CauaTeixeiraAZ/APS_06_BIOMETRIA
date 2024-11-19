@@ -1,0 +1,44 @@
+package com.unip.biometria.controler.services;
+
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
+
+public class MqttClienteServices {
+
+	private MqttClient mqttClient;
+
+    private static final String TOPIC_OUT = "topicOut";
+    private static final String TOPIC_IN = "topicIn";
+
+    // Map para correlacionar mensagens enviadas e respostas esperadas
+    private final Map<String, CompletableFuture<String>> pendingResponses = new ConcurrentHashMap<>();
+
+    public void enviarComando(String comando) {
+        mqttClient.publish(TOPIC_IN, comando.getBytes(), 2, false);
+    }
+
+    public CompletableFuture<String> enviarComandoEObterResposta(String comando) {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        pendingResponses.put(comando, future);
+        enviarComando(comando);
+        return future;
+    }
+
+    public void processarMensagemRecebida(MqttMessageReceivedEvent event) {
+        String mensagem = new String(event.getPayload());
+        String correlacao = extrairCorrelacao(mensagem);
+
+        if (pendingResponses.containsKey(correlacao)) {
+            pendingResponses.get(correlacao).complete(mensagem);
+            pendingResponses.remove(correlacao);
+        }
+    }
+
+    private String extrairCorrelacao(String mensagem) {
+        // Exemplo de lógica para extrair identificação da mensagem
+        return mensagem.substring(0, 3); // Ajuste conforme o formato do protocolo
+    }
+}

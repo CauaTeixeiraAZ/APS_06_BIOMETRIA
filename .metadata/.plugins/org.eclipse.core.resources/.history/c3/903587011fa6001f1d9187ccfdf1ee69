@@ -1,0 +1,55 @@
+package com.unip.biometria.model.entities;
+
+package com.agrotech.entities;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "empresas")
+public class Empresa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String nome;
+
+    @Column(nullable = false)
+    private String localizacao;
+
+    @Column(nullable = false)
+    private String agrotoxicos;
+
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public String getAgrotoxicos() {
+        return agrotoxicos;
+    }
+
+    public void setAgrotoxicos(String agrotoxicos) {
+        this.agrotoxicos = agrotoxicos;
+    }
+}

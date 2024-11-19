@@ -1,0 +1,67 @@
+package com.unip.biometria.controler.services;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import antlr.collections.List;
+
+@Service
+public class DigitalPositionService {
+
+    @Autowired
+    private MqttClienteService mqttClientService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    private static final int TOTAL_POSICOES = 140;
+
+    // Sincronizar posições ocupadas com ESP32
+    public void sincronizarPosicoesOcupadas() {
+        try {
+            // Envia comando para listar posições ocupadas
+            CompletableFuture<String> resposta = mqttClientService.enviarComandoEObterResposta("4");
+            String posicoesOcupadas = resposta.get(5, TimeUnit.SECONDS);
+
+            atualizarPosicoesNoBanco(posicoesOcupadas);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao sincronizar posições ocupadas com o ESP32.", e);
+        }
+    }
+
+    private void atualizarPosicoesNoBanco(String posicoesOcupadas) {
+        Set<Integer> ocupadas = new HashSet<>();
+
+        if (!"none".equals(posicoesOcupadas)) {
+            for (String pos : posicoesOcupadas.split(",")) {
+                ocupadas.add(Integer.parseInt(pos.trim()));
+            }
+        }
+
+        // Atualiza posições no banco
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        for (Usuario usuario : usuarios) {
+            if (!ocupadas.contains(usuario.getPosicaoDigital())) {
+                usuario.setPosicaoDigital(null); // Marca como não atribuída
+                usuarioRepository.save(usuario);
+            }
+        }
+    }
+
+    // Obter primeira posição disponível
+    public int obterPosicaoDisponivel() {
+        List<Integer> posicoesBanco = usuarioRepository.findPosicoesOcupadas();
+        Set<Integer> ocupadas = new HashSet<>(posicoesBanco);
+
+        for (int i = 1; i <= TOTAL_POSICOES; i++) {
+            if (!ocupadas.contains(i)) {
+                return i;
+            }
+        }
+
+        return -1; // Nenhuma posição disponível
+    }
+}

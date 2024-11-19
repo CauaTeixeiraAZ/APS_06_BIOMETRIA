@@ -1,0 +1,68 @@
+package com.unip.biometria.controler.services;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import com.unip.biometria.model.entities.Users;
+import com.unip.biometria.model.repositorys.UsersRepository;
+
+
+public class DigitalPositionService {
+
+    private MqttClienteServices mqttClientService;
+
+
+    private UsersRepository UsersRepository;
+
+    private static final int TOTAL_POSICOES = 140;
+
+    // Sincronizar posições ocupadas com ESP32
+    public void sincronizarPosicoesOcupadas() {
+        try {
+            // Envia comando para listar posições ocupadas
+            CompletableFuture<String> resposta = mqttClientService.enviarComandoEObterResposta("4");
+            String posicoesOcupadas = resposta.get(5, TimeUnit.SECONDS);
+
+            atualizarPosicoesNoBanco(posicoesOcupadas);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao sincronizar posições ocupadas com o ESP32.", e);
+        }
+    }
+
+    private void atualizarPosicoesNoBanco(String posicoesOcupadas) {
+        Set<Integer> ocupadas = new HashSet<>();
+
+        if (!"none".equals(posicoesOcupadas)) {
+            for (String pos : posicoesOcupadas.split(",")) {
+                ocupadas.add(Integer.parseInt(pos.trim()));
+            }
+        }
+
+        // Atualiza posições no banco
+        List<Users> Userss = UsersRepository.findAll();
+        for (Users Users : Userss) {
+            if (!ocupadas.contains(Users.getPosicaoDigital())) {
+                Users.setPosicaoDigital(null); // Marca como não atribuída
+                UsersRepository.save(Users);
+            }
+        }
+    }
+
+    // Obter primeira posição disponível
+    public int obterPosicaoDisponivel() {
+        List<Integer> posicoesBanco = UsersRepository.findPosicoesOcupadas();
+        Set<Integer> ocupadas = new HashSet<>(posicoesBanco);
+
+        for (int i = 1; i <= TOTAL_POSICOES; i++) {
+            if (!ocupadas.contains(i)) {
+                return i;
+            }
+        }
+
+        return -1; // Nenhuma posição disponível
+    }
+}

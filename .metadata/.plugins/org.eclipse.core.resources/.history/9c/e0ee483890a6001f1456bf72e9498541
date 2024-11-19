@@ -1,0 +1,57 @@
+package com.unip.biometria.model.dao;
+
+import java.util.List;
+
+import com.unip.biometria.model.entities.Company;
+
+public class DaoCompany implements IDaoCompany{
+
+	@Override
+	public int register(Company company) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Company find(int cnpj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Company find(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Company> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean update(Company company) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(int Cnpj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Company company) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

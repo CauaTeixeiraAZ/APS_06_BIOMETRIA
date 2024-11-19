@@ -1,0 +1,66 @@
+package com.unip.biometria.model.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Userss")
+public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String email;
+    private String senha;
+    private int nivelAcesso; // Níveis: 1, 2, 3
+
+    // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public int getNivelAcesso() {
+        return nivelAcesso;
+    }
+
+    public void setNivelAcesso(int nivelAcesso) {
+        this.nivelAcesso = nivelAcesso;
+    }
+
+    // Método para alterar nível de acesso de outro usuário
+    public boolean alterarNivelAcesso(Users otherUsers, int novoNivel) {
+        if (otherUsers.getNivelAcesso() <= this.nivelAcesso && novoNivel <= this.nivelAcesso) {
+        	otherUsers.setNivelAcesso(novoNivel);
+            return true;
+        }
+        return false; // Não permitido
+    }
+
+    // Método para excluir outro usuário
+    public boolean podeExcluir(Users otherUsers) {
+        return otherUsers.getNivelAcesso() <= this.nivelAcesso;
+    }
+}

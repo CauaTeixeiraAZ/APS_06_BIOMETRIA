@@ -21,3 +21,9 @@
 	-fx-background-radius:20;
 	-fx-border-color: black;
 }
+
+.card-company{
+	-fx-background-radius:5;
+	-fx-background-color: #44ADDA;
+	-fx-border: 0;
+}

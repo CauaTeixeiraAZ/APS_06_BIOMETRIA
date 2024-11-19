@@ -1,0 +1,11 @@
+package com.unip.biometria.model.repositorys;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.unip.biometria.model.entities.Users;
+
+public interface UsersRepository extends JpaRepository<Users, Long> {
+    Optional<Users> findByEmail(String email);
+    List<Users> findByNomeContainingOrEmailContaining(String nome, String email);
+}

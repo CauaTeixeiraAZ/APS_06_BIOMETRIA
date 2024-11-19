@@ -1,0 +1,57 @@
+package com.unip.biometria.controler.services;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
+
+import com.unip.biometria.model.entities.Users;
+import com.unip.biometria.model.repositorys.UsersRepository;
+
+@Service
+public class UsersService {
+
+    @Autowired
+    private UsersRepository UsersRepository;
+
+    // MQTT Client para comunicação com o ESP32
+    @Autowired
+    private MqttClient mqttClient;
+
+    public Users cadastrarUsers(Users Users) {
+        if (UsersRepository.findByEmail(Users.getEmail()).isPresent()) {
+            throw new RuntimeException("Email já cadastrado.");
+        }
+
+        // Busca uma posição disponível no ESP32
+        int posicaoDisponivel = obterPosicaoDisponivel();
+        if (posicaoDisponivel == -1) {
+            throw new RuntimeException("Não há posições disponíveis no sensor.");
+        }
+        Users.setPosicaoDigital(posicaoDisponivel);
+
+        // Envia comando ao ESP32 para cadastrar digital
+        mqttClient.publicar("topicIn", "1" + posicaoDisponivel);
+
+        return UsersRepository.save(Users);
+    }
+
+    public void deletarUsers(Long id, Users UsersLogado) {
+        Users Users = UsersRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+        
+        if (!UsersLogado.podeAlterarOuDeletar(Users)) {
+            throw new RuntimeException("Você não tem permissão para excluir este usuário.");
+        }
+
+        // Envia comando ao ESP32 para deletar digital
+        if (Users.getPosicaoDigital() != null) {
+            mqttClient.publicar("topicIn", "3" + Users.getPosicaoDigital());
+        }
+
+        UsersRepository.delete(Users);
+    }
+
+    public int obterPosicaoDisponivel() {
+        // Simula uma chamada ao ESP32 para obter posições livres
+        // Substituir por chamada real via MQTT se necessário
+        return 1; // Exemplo: Retorna a posição 1 como disponível
+    }
+}

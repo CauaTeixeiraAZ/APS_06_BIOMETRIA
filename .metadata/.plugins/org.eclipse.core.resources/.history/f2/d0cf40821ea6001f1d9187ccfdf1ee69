@@ -1,0 +1,52 @@
+package com.unip.biometria.controler.ui;
+
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class LoginSceneControler {
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private PasswordField senhaField;
+
+    private AuthService authService;
+
+    public LoginController() {
+        try {
+            this.authService = new AuthService();
+        } catch (Exception e) {
+            mostrarAlerta("Erro", "Erro ao inicializar o serviço de autenticação.", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void handleLogin() {
+        String email = emailField.getText();
+        String senha = senhaField.getText();
+
+        try {
+            boolean autenticado = authService.autenticar(email, senha);
+            if (autenticado) {
+                mostrarAlerta("Sucesso", "Login realizado com sucesso!", Alert.AlertType.INFORMATION);
+                // Carregar próxima tela
+            } else {
+                mostrarAlerta("Falha", "Email, senha ou digital inválidos.", Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            mostrarAlerta("Erro", "Erro ao realizar login.", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
+    }
+}
+

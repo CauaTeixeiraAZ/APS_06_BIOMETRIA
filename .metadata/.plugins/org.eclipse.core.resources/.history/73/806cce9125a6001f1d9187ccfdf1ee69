@@ -1,0 +1,32 @@
+package com.unip.biometria.controler.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.unip.biometria.model.entities.Company;
+
+public class CompanyDAO {
+    private SessionFactory factory;
+
+    public CompanyDAO() {
+        factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Company.class)
+                .buildSessionFactory();
+    }
+
+    public List<Company> findAll() {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            List<Company> Companys = session.createQuery("FROM Company", Company.class).list();
+            session.getTransaction().commit();
+            return Companys;
+        } finally {
+            session.close();
+        }
+    }
+}

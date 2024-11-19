@@ -1,0 +1,5 @@
+package com.unip.biometria.controllers;
+
+public class CompanyCardController {
+
+}

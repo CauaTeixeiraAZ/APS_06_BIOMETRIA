@@ -1,0 +1,52 @@
+package com.unip.biometria.controler.services;
+
+@Service
+public class UsuarioService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    // MQTT Client para comunicação com o ESP32
+    @Autowired
+    private MqttClient mqttClient;
+
+    public Usuario cadastrarUsuario(Usuario usuario) {
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            throw new RuntimeException("Email já cadastrado.");
+        }
+
+        // Busca uma posição disponível no ESP32
+        int posicaoDisponivel = obterPosicaoDisponivel();
+        if (posicaoDisponivel == -1) {
+            throw new RuntimeException("Não há posições disponíveis no sensor.");
+        }
+        usuario.setPosicaoDigital(posicaoDisponivel);
+
+        // Envia comando ao ESP32 para cadastrar digital
+        mqttClient.publicar("topicIn", "1" + posicaoDisponivel);
+
+        return usuarioRepository.save(usuario);
+    }
+
+    public void deletarUsuario(Long id, Usuario usuarioLogado) {
+        Usuario usuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+        
+        if (!usuarioLogado.podeAlterarOuDeletar(usuario)) {
+            throw new RuntimeException("Você não tem permissão para excluir este usuário.");
+        }
+
+        // Envia comando ao ESP32 para deletar digital
+        if (usuario.getPosicaoDigital() != null) {
+            mqttClient.publicar("topicIn", "3" + usuario.getPosicaoDigital());
+        }
+
+        usuarioRepository.delete(usuario);
+    }
+
+    public int obterPosicaoDisponivel() {
+        // Simula uma chamada ao ESP32 para obter posições livres
+        // Substituir por chamada real via MQTT se necessário
+        return 1; // Exemplo: Retorna a posição 1 como disponível
+    }
+}

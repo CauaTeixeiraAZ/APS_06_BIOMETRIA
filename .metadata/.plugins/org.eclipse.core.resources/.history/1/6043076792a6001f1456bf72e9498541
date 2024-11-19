@@ -1,0 +1,71 @@
+package com.unip.biometria.model.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import com.unip.biometria.model.entities.Company;
+import com.unip.biometria.model.utils.JpaUtils;
+
+public class DaoCompany implements IDaoCompany {
+
+	EntityManager entityManager = JpaUtils.getEntityManager();
+
+	@Override
+	public long register(Company company) {
+
+		entityManager.getTransaction().begin();
+		entityManager.persist(company);
+		entityManager.getTransaction().commit();
+
+		entityManager.close();
+		return company.getId();
+	}
+
+	@Override
+	public Company find(int cnpj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Company find(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Company> findAll() {
+		EntityManager entityManager = JpaUtils.getEntityManager();
+		List<Company> company = entityManager.createQuery("from Company", Company.class).getResultList();
+
+		entityManager.close();
+
+		return company;
+	}
+
+	@Override
+	public boolean update(Company company) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(int Cnpj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Company company) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

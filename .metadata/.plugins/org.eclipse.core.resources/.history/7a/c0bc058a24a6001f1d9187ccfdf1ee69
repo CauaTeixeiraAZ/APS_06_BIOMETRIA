@@ -1,0 +1,34 @@
+package com.unip.biometria.controler.dao;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.unip.biometria.model.entities.Users;
+
+public class UsersDAO {
+    private SessionFactory factory;
+
+    public UsersDAO() {
+        factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Users.class)
+                .buildSessionFactory();
+    }
+
+    public Users findByEmail(String email) {
+        Session session = factory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            Users Users = session
+                    .createQuery("FROM Users WHERE email = :email", Users.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+            session.getTransaction().commit();
+            return Users;
+        } finally {
+            session.close();
+        }
+    }
+}

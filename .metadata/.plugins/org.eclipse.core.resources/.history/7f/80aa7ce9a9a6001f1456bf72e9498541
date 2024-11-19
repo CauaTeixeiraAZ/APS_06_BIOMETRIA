@@ -1,0 +1,23 @@
+package com.unip.biometria.model.utils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class JpaUtils {
+	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = null;
+	private static EntityManager ENTITY_MANAGER = null;
+	private static EntityTransaction TRANSACTION = null;
+	
+	public static EntityManager getEntityManager() {
+		if(ENTITY_MANAGER_FACTORY == null) {
+			ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("biometria-SQL");
+		}
+		if(ENTITY_MANAGER == null) {
+			ENTITY_MANAGER = ENTITY_MANAGER_FACTORY.createEntityManager();
+		}
+		
+		return ENTITY_MANAGER_FACTORY.createEntityManager();
+	}
+}

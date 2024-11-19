@@ -1,0 +1,40 @@
+package com.unip.biometria.model.dao;
+
+import java.util.List;
+
+import com.unip.biometria.model.entities.Users;
+
+public class DaoUsers implements IDaoUsers {
+
+	@Override
+	public int register(Users user) {
+		
+		return 0;
+	}
+
+	@Override
+	public Users find(String email) {
+		return null;
+	}
+
+	@Override
+	public List<Users> findAll() {
+		return null;
+	}
+
+	@Override
+	public boolean update(Users user) {
+		return false;
+	}
+
+	@Override
+	public boolean delete(String email) {
+		return false;
+	}
+
+	@Override
+	public boolean delete(Users user) {
+		return false;
+	}
+
+}

@@ -1,0 +1,46 @@
+package com.unip.biometria.model.repositorys;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.util.List;
+
+public class UsersRepository {
+    private Session session;
+
+    public UsersRepository(Session session) {
+        this.session = session;
+    }
+
+    public Users buscarPorEmail(String email) {
+        String hql = "FROM Users WHERE email = :email";
+        return session.createQuery(hql, Users.class)
+                .setParameter("email", email)
+                .uniqueResult();
+    }
+
+    public List<Users> buscarPorNomeOuEmail(String termo) {
+        String hql = "FROM Users WHERE email LIKE :termo";
+        return session.createQuery(hql, Users.class)
+                .setParameter("termo", "%" + termo + "%")
+                .getResultList();
+    }
+
+    public void salvar(Users Users) {
+        Transaction transaction = session.beginTransaction();
+        session.save(Users);
+        transaction.commit();
+    }
+
+    public void atualizar(Users Users) {
+        Transaction transaction = session.beginTransaction();
+        session.update(Users);
+        transaction.commit();
+    }
+
+    public void deletar(Users Users) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(Users);
+        transaction.commit();
+    }
+}
