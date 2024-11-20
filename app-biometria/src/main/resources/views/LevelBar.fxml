@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="187.0" prefWidth="478.0" spacing="15.0" style="-fx-background-radius: 0;" styleClass="card-company" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets left="10.0" />
+   </padding>
+   <children>
+      <TextField maxWidth="364.0" prefHeight="28.0" prefWidth="364.0" promptText="Email" styleClass="input-cadastro">
+         <VBox.margin>
+            <Insets left="40.0" />
+         </VBox.margin>
+      </TextField>
+      <ButtonBar buttonMinWidth="100.0" maxWidth="370.0" minWidth="0.0" prefHeight="34.0" prefWidth="361.0">
+        <buttons>
+            <Button mnemonicParsing="false" styleClass="button-level" text="Nível 1" textAlignment="RIGHT" />
+          <Button mnemonicParsing="false" styleClass="button-level" text="Nível 2" />
+            <Button mnemonicParsing="false" styleClass="button-level" text="Nível 3" textAlignment="CENTER" />
+        </buttons>
+         <VBox.margin>
+            <Insets left="15.0" />
+         </VBox.margin>
+      </ButtonBar>
+      <ButtonBar buttonMinWidth="100.0" maxWidth="439.0" prefHeight="42.0" prefWidth="439.0">
+        <buttons>
+            <Button maxWidth="100.0" minWidth="91.0" mnemonicParsing="false" prefHeight="25.0" style="-fx-background-color: none;" text="Cancelar" textFill="WHITE" />
+          <Button maxWidth="130.0" minWidth="18.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="161.0" style="-fx-background-color: #57E961;" styleClass="button-level" text="Confirmar" />
+        </buttons>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </ButtonBar>
+   </children>
+</VBox>

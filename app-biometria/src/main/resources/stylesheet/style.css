@@ -27,3 +27,18 @@
 	-fx-background-color: #44ADDA;
 	-fx-border: 0;
 }
+
+.button-confi{
+	-fx-background-radius:20;
+	-fx-border-radius:20;
+	-fx-border-color:black;
+	-fx-text-fill:black;
+}
+
+.button-level{
+	-fx-background-radius:20;
+	-fx-border-radius:20;
+	-fx-border-color:black;
+	-fx-text-fill:black;
+	-fx-background-color:FFF;
+}
