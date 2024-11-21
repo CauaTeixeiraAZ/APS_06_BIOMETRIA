@@ -36,11 +36,10 @@ public class Users {
     
     public Users() {}
 
-    public Users(String email, String senha, AcessLevel nivelAcesso, Integer posicaoDigital) {
+    public Users(String email, String senha) {
         this.email = email;
         this.senha = senha;
-        this.nivelAcesso = nivelAcesso;
-        this.posicaoDigital = posicaoDigital;
+        this.nivelAcesso = AcessLevel.USER;
     }
 
     // Getters e Setters

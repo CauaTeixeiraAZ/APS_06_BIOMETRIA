@@ -1,0 +1,23 @@
+package com.unip.biometria.controllers;
+
+	import com.unip.biometria.model.entities.Company;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
+	public class CompanyCardController {
+
+	    @FXML
+	    private Label CompanyCnpjName;
+
+	    @FXML
+	    private Label CompanyNameLabel;
+
+	    @FXML
+	    private VBox cardCompany;
+	    
+	    public void setData(Company company) {
+	    	
+	    }
+	}

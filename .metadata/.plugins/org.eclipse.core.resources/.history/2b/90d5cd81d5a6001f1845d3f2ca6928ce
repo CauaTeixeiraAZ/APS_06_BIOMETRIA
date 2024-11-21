@@ -1,0 +1,58 @@
+package com.unip.biometria.model.utils;
+
+import org.eclipse.paho.mqttv5.client.IMqttDeliveryToken;
+import org.eclipse.paho.mqttv5.client.MqttCallback;
+import org.eclipse.paho.mqttv5.client.MqttClient;
+import org.eclipse.paho.mqttv5.client.MqttConnectOptions;
+import org.eclipse.paho.mqttv5.common.MqttException;
+import org.eclipse.paho.mqttv5.common.MqttMessage;
+
+public class MqttUtils {
+    private static final String BROKER_URL = "tcp://broker.hivemq.com:1883"; // URL do broker
+    private static final String CLIENT_ID = "JavaMQTTSubscriber";
+    private static final String TOPIC = "test/topic"; // Tópico para se inscrever
+
+    public static void main(String[] args) {
+        try {
+            // Criar o cliente MQTT
+            MqttClient client = new MqttClient(BROKER_URL, CLIENT_ID);
+
+            // Configurar opções de conexão
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setCleanSession(true);
+
+            // Definir o callback para tratamento de mensagens
+            client.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    System.out.println("Conexão perdida: " + cause.getMessage());
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    System.out.println("Mensagem recebida do tópico: " + topic);
+                    System.out.println("Conteúdo da mensagem: " + new String(message.getPayload()));
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                    // Não utilizado no subscriber
+                }
+            });
+
+            // Conectar ao broker
+            client.connect(options);
+            System.out.println("Conectado ao broker: " + BROKER_URL);
+
+            // Inscrever-se no tópico
+            client.subscribe(TOPIC);
+            System.out.println("Inscrito no tópico: " + TOPIC);
+
+            // Manter o programa em execução para ouvir mensagens
+            Thread.sleep(Long.MAX_VALUE);
+
+        } catch (MqttException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

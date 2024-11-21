@@ -14,4 +14,10 @@ public class DigitalSceneController {
 
 	@FXML
 	private Label labelInfo;
+	
+	private int parametro;
+	
+	protected void setParametro(int parametro) {
+		this.parametro = parametro;
+	}
 }

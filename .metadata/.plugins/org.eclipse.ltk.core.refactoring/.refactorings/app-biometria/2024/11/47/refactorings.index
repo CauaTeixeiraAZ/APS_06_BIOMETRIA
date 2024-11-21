@@ -16,3 +16,6 @@
 1732044214354	Delete element
 1732044253248	Move file
 1732044563485	Rename resource 'CompanyModal.fxml'
+1732167017597	Rename package 'com.unip.biometria.model.utils'
+1732167033025	Rename package 'com.unip.biometria.model.dao'
+1732167335292	Rename type 'LoginException'

@@ -1,0 +1,51 @@
+package com.unip.biometria.model.utils;
+
+import javax.net .ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLSocketFactory;
+import java.io.FileInputStream;
+import java.security.KeyStore;
+
+
+public class MqttUtils {
+
+	    private static final String BROKER_URL = "ssl://your_broker_url:8883";
+	    private static final String CLIENT_ID = "your_client_id";
+	    private static final String KEYSTORE_PATH = "path/to/keystore.jks";
+	    private static final String KEYSTORE_PASSWORD = "your_keystore_password";
+
+	    public static void main(String[] args) {
+	        try {
+	            // Carregar o keystore
+	            KeyStore keyStore = KeyStore.getInstance("JKS");
+	            keyStore.load(new FileInputStream(KEYSTORE_PATH), KEYSTORE_PASSWORD.toCharArray());
+
+	            // Configurar o TrustManager
+	            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+	            trustManagerFactory.init(keyStore);
+
+	            // Criar o SSLContext
+	            SSLContext sslContext = SSLContext.getInstance("TLS");
+	            sslContext.init(null, trustManagerFactory.getTrustManagers(), null);
+	            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+	            // Criar o cliente MQTT
+	            MqttClient client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
+	            MqttConnectOptions options = new MqttConnectOptions();
+	            options.setSocketFactory(sslSocketFactory);
+	            options.setCleanSession(true);
+
+	            // Conectar ao broker
+	            client.connect(options);
+	            System.out.println("Conectado ao broker MQTT com TLS!");
+
+	            // Lógica adicional para publicar ou assinar mensagens
+
+	            // Desconectar
+	            client.disconnect();
+	            System.out.println("Desconectado do broker MQTT.");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    
+}

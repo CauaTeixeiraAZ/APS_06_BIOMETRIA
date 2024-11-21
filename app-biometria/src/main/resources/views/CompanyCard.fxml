@@ -5,22 +5,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="cardCompany" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="240.0" spacing="5.0" styleClass="card-company" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label fx:id="CompanyNameLabel" text="Teste testado da silva">
-         <font>
-            <Font name="Berlin Sans FB Bold" size="18.0" />
-         </font></Label>
-      <Label fx:id="CompanyCnpjName" text="00.000.000/0000-00" VBox.vgrow="NEVER">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </children>
-   <padding>
-      <Insets left="10.0" />
-   </padding>
+<VBox fx:id="cardCompany" alignment="CENTER_LEFT"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="75.0" prefWidth="240.0" spacing="5.0"
+	styleClass="card-company" stylesheets="@../stylesheet/style.css"
+	xmlns="http://javafx.com/javafx/23.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label fx:id="CompanyNameLabel" text="Teste testado da silva">
+			<font>
+				<Font name="Berlin Sans FB Bold" size="18.0" />
+			</font>
+		</Label>
+		<Label fx:id="CompanyCnpjLabel" text="00.000.000/0000-00"
+			VBox.vgrow="NEVER">
+			<VBox.margin>
+				<Insets />
+			</VBox.margin>
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+	</children>
+	<padding>
+		<Insets left="10.0" />
+	</padding>
 </VBox>

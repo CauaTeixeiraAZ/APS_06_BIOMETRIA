@@ -5,16 +5,21 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="240.0" spacing="15.0" styleClass="card-company" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label text="TESTE TESTADO DA SILVA" />
-      <Label text="00.000.000/0000-00" VBox.vgrow="NEVER">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Label>
-   </children>
-   <padding>
-      <Insets left="10.0" />
-   </padding>
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity"
+	maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+	prefHeight="75.0" prefWidth="240.0" spacing="15.0"
+	styleClass="card-company" stylesheets="@../stylesheet/style.css"
+	xmlns="http://javafx.com/javafx/23.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label text="TESTE TESTADO DA SILVA" />
+		<Label text="00.000.000/0000-00" VBox.vgrow="NEVER">
+			<VBox.margin>
+				<Insets />
+			</VBox.margin>
+		</Label>
+	</children>
+	<padding>
+		<Insets left="10.0" />
+	</padding>
 </VBox>
